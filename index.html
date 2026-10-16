@@ -1,9 +1,510 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Website</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>| SketchUp</title>
+  
+  <!-- Embedded Font Definition -->
+  <style>
+    @font-face {
+      font-family: 'Mayberry W01 Light';
+      src: url('Mayberry W01 Light/Mayberry W01 Light.ttf') format('truetype');
+      font-weight: 300;
+      font-style: normal;
+    }
+
+    /* Core Styles & Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Mayberry W01 Light', 'Open Sans', Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.42857143;
+      color: #333333;
+      background-color: #fff;
+    }
+    a {
+      color: #008080;
+      text-decoration: none;
+    }
+    a:hover, a:focus {
+      color: #004d4d;
+      text-decoration: underline;
+    }
+
+    /* Top Navigation Bar */
+    .navbar-fixed-top {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: #2d2d2d;
+      border-bottom: 1px solid #1a1a1a;
+      min-height: 60px;
+    }
+    .navbar-container {
+      max-width: 1170px;
+      margin: 0 auto;
+      padding: 0 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    .navbar-brand img {
+      height: 32px;
+      display: block;
+    }
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      align-items: center;
+    }
+    .nav-menu li a {
+      color: #cccccc;
+      font-size: 14px;
+      font-weight: 300;
+      font-family: 'Mayberry W01 Light', 'Open Sans', Arial, sans-serif;
+    }
+    .nav-menu li a:hover,
+    .nav-menu li.active a {
+      color: #ffffff;
+    }
+    .nav-menu .download-btn a {
+      background-color: #e21c21;
+      color: #fff !important;
+      padding: 8px 16px;
+      border-radius: 3px;
+    }
+
+    /* Main Container & Page Layout */
+    .main-wrapper {
+      max-width: 1170px;
+      margin: 30px auto 0 auto;
+      padding: 0 15px 40px 15px;
+    }
+    .req-link {
+      margin-bottom: 20px;
+      display: inline-block;
+      font-weight: 600;
+      font-family: 'Mayberry W01 Light', 'Open Sans', Arial, sans-serif;
+    }
+    h2.pane-title {
+      font-size: 28px;
+      margin-top: 10px;
+      margin-bottom: 25px;
+      font-weight: 300;
+      font-family: 'Mayberry W01 Light', 'Open Sans', Arial, sans-serif;
+      color: #222;
+    }
+
+    /* Tables */
+    .views-table {
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 35px;
+      border-collapse: collapse;
+      border: 1px solid #ddd;
+      font-family: 'Mayberry W01 Light', 'Open Sans', Arial, sans-serif;
+    }
+    .views-table caption {
+      padding: 10px 15px;
+      color: #333;
+      background-color: #f5f5f5;
+      text-align: left;
+      font-size: 18px;
+      font-weight: 600;
+      border: 1px solid #ddd;
+      border-bottom: none;
+      font-family: 'Mayberry W01 Light', 'Open Sans', Arial, sans-serif;
+    }
+    .views-table th, 
+    .views-table td {
+      padding: 12px 15px;
+      vertical-align: middle;
+      border-top: 1px solid #ddd;
+      text-align: left;
+    }
+    .views-table th {
+      background-color: #fafafa;
+      font-weight: 600;
+      border-bottom: 2px solid #ddd;
+    }
+    .views-table tbody tr:nth-of-type(odd) {
+      background-color: #f9f9f9;
+    }
+    .views-table tbody tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* Social Bar */
+    .social-bar {
+      background-color: #2b2b2b;
+      padding: 15px 0;
+      text-align: center;
+      font-family: 'Mayberry W01 Light', 'Open Sans', Arial, sans-serif;
+    }
+    .social-bar ul {
+      list-style: none;
+      display: inline-flex;
+      gap: 20px;
+    }
+    .social-bar ul li a {
+      color: #fff;
+      font-weight: bold;
+    }
+
+    /* Main Footer */
+    footer.footer-main {
+      background-color: #1a1a1a;
+      color: #999;
+      padding: 40px 0 20px 0;
+      font-size: 13px;
+      font-family: 'Mayberry W01 Light', 'Open Sans', Arial, sans-serif;
+    }
+    .footer-container {
+      max-width: 1170px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+    .footer-column {
+      flex: 1;
+      min-width: 180px;
+      margin-bottom: 20px;
+    }
+    .footer-column h4 {
+      color: #fff;
+      font-size: 14px;
+      margin-bottom: 15px;
+      font-family: 'Mayberry W01 Light', 'Open Sans', Arial, sans-serif;
+    }
+    .footer-column ul {
+      list-style: none;
+    }
+    .footer-column ul li {
+      margin-bottom: 8px;
+    }
+    .footer-column ul li a {
+      color: #999;
+    }
+    .footer-column ul li a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #333;
+      padding-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .trimble-logo img {
+      height: 25px;
+    }
+    .copyright-links a {
+      color: #999;
+      margin: 0 10px;
+    }
+    .copyright-links a:hover {
+      color: #fff;
+    }
+    .lang-select select {
+      background: #222;
+      color: #ccc;
+      border: 1px solid #444;
+      padding: 5px;
+      border-radius: 3px;
+      font-family: 'Mayberry W01 Light', 'Open Sans', Arial, sans-serif;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .views-table {
+        display: block;
+        overflow-x: auto;
+      }
+      .footer-links {
+        flex-direction: column;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Hello World! Welcome to my GitHub Pages site.</h1>
+
+<div style="font-size: 10px; color: #888; text-align: center; padding: 10px;">
+    We need your help to make this project grow. Learn More
+	</div>
+
+  <!-- Top Navigation Header -->
+  <header class="navbar-fixed-top">
+    <div class="navbar-container">
+      <a class="navbar-brand" href="https://web.archive.org/web/20160331022509/https://sketchup.com/" title="Home">
+        <img src="https://web.archive.org/web/20160331022509im_/http://www.sketchup.com/sites/all/themes/sketch_www/logo.png" alt="SketchUp Logo"/>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="#">Products ?</a></li>
+        <li><a href="#">3D for... ?</a></li>
+        <li><a href="#">Buy ?</a></li>
+        <li><a href="#">Learn ?</a></li>
+        <li class="download-btn active"><a href="#">Download</a></li>
+        <li><a href="#">Trimble ?</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Main Body Content -->
+  <div class="main-wrapper">
+    
+    <div class="req-link">
+      <a href="https://web.archive.org/web/20160331022509/http://help.sketchup.com/en/article/36208" target="_blank">Hardware and Software Requirements</a>
+    </div>
+
+    <h2 class="pane-title">SketchUp Product Downloads</h2>
+
+    <!-- English Table (Windows 64 Bit Only) -->
+    <table class="views-table">
+      <caption>Windows Downloads</caption>
+      <thead>
+        <tr>
+          <th></th>
+          <th>All Downloads</th>
+          <th>VirusTotal Scans</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        </tr>
+          <td><strong>SketchUp 2025 Pro - Needs License</strong></td>
+          <td><a href="https://github.com/your-local-archiver/sketchup-archive/releases/download/su-24-25/SketchUp-2025-en.exe">Download</a></td>
+          <td><a href="" target="_blank">No scans available</a></td>
+        </tr>
+        </tr>
+          <td><strong>SketchUp 2024 Pro - Needs License</strong></td>
+          <td><a href="https://github.com/your-local-archiver/sketchup-archive/releases/download/su-24-25/SketchUp-2024-en.exe">Download</a></td>
+          <td><a href="https://www.virustotal.com/gui/file/7f3a7a14719d462926f3df83840b6cab49b737c7a829eb3a9ba89574586848bf" target="_blank">Scan</a></td>
+        </tr>
+        </tr>
+          <td><strong>SketchUp 2021 Pro - Needs license</strong></td>
+          <td><a href="https://github.com/your-local-archiver/sketchup-archive/releases/download/su-24-25/SketchUp-2024-en.exe">Download</a></td>
+          <td><a href="https://www.virustotal.com/gui/file/eec1535689d97da3e4489b8e78e3114f315e4bdf27e3f1ecd4413f4efcecbf43/detection" target="_blank">Scan</a></td>
+        </tr>
+        </tr>
+          <td><strong>SketchUp 2020 Pro - Needs license</strong></td>
+          <td><a href="https://github.com/your-local-archiver/sketchup-archive/releases/download/su-2020/SketchUpPro-2020.exe">Download</a></td>
+          <td><a href="https://www.virustotal.com/gui/file/69c661e185d7f6520edcfad58dd469edda99d0613044e0fb8edff94467ca2000" target="_blank">Scan</a></td>
+        </tr>
+        </tr>
+          <td><strong>SketchUp 2019 Pro - Needs License</strong></td>
+          <td><a href="https://github.com/your-local-archiver/sketchup-archive/releases/download/su-2019/SketchUpPro-2019-en.exe">Download</a></td>
+          <td><a href="https://www.virustotal.com/gui/file/affcf134be48f972db00455ea41989bb2659bd5bbbaeb1704e26879abc98c4b3" target="_blank">Scan</a></td>
+        </tr>
+        </tr>
+          <td><strong>SketchUp 2019 Viewer</strong></td>
+          <td><a href="https://github.com/your-local-archiver/sketchup-archive/releases/download/su-2019/SketchUpViewer-2019-en.exe">Download</a></td>
+          <td><a href="https://www.virustotal.com/gui/file/934698c114e4a78f07ade2473961498de08c97d87c593a3e91baf6f91d1998de" target="_blank">Scan</a></td>
+        </tr>
+        </tr>
+          <td><strong>SketchUp 2018 Trial</strong></td>
+          <td><a href="https://github.com/your-local-archiver/sketchup-archive/releases/download/su-2018/SketchUpPro.2018.CZ.exe">Download</a></td>
+          <td><a href="https://www.virustotal.com/gui/file/8acf59b7bb6ddfd982dbd06ba0805a2f79ea40c8f8875259326b39f848d1b497" target="_blank">Scan</a></td>
+        </tr>
+        </tr>
+          <td><strong>SketchUp 2017 Make</strong></td>
+          <td><a href="https://github.com/your-local-archiver/sketchup-archive/releases/download/su-2017/sketchupmake-2017-en.exe">Download</a>
+          <td><a href="https://archive.org/details/sketchupmake2017">Other Archive</a></td>
+          <td><a href="https://www.virustotal.com/gui/file/9841792f170d803ae95a2741c44cce38e618660f98a1a3816335e9bf1b45Gooa337" target="_blank">Scan</a></td>
+        </tr>
+        </tr>
+          <td><strong>SketchUp 2016 Make</strong></td>
+          <td><a href="https://github.com/your-local-archiver/sketchup-archive/releases/download/su-2016/SketchUpMake-2016-en.exe">Download</a></td>
+          <td><a href="https://www.virustotal.com/gui/file/caa4224614538a3d28c0b3291fc218c2fccf92b3002618ed0c56a83b892f46ce" target="_blank">Scan</a></td>
+        </tr>
+        </tr>
+          <td><strong>SketchUp 2014 Make</strong></td>
+          <td><a href="https://github.com/your-local-archiver/sketchup-archive/releases/download/su-2014/SketchUpMake-2014-en.exe">Download</a></td>
+          <td><a href="https://www.virustotal.com/gui/file/4086a5253256d6b6a30d783cf86df7092c4ddd9ed0ffdd1c7b9817442572ae66" target="_blank">Scan</a></td>
+        </tr>
+        </tr>
+          <td><strong>SketchUp 2013 Make</strong></td>
+          <td><a href="https://github.com/your-local-archiver/sketchup-archive/releases/download/su-2013-make/SketchUp.Make.2013.-.x32.English.exe">Download</a></td>
+          <td><a href="https://www.virustotal.com/gui/file/ca5dbe404e9f3e86fa1b505d9bebeba461663c825e2d062ded45d90e73ca3272" target="_blank">Scan</a></td>
+        </tr>
+        </tr>
+          <td><strong>SketchUp 8 (Google Release)</strong></td>
+          <td><a href="https://github.com/your-local-archiver/sketchup-archive/releases/download/last-google-release/Sketchup.8.Google.exe">Download</a></td>
+          <td><a href="https://www.virustotal.com/gui/file/1e6e9a00b68e88a65082d167c7a736f0cbdf8f8828db25c73daa635cda0f1ec8" target="_blank">Scan</a></td>
+        </tr>
+        </tr>
+          <td><strong>SketchUp 7 (Google Release)</strong></td>
+          <td><a href="https://github.com/your-local-archiver/sketchup-archive/releases/download/google-release3/Sketchup.7.exe">Download</a></td>
+          <td><a href="https://www.virustotal.com/gui/file/efa9bc4e62c49b0e8fd4f824501b7d24d1153824caf7abc7ff7071f1a767a63d" target="_blank">Scan</a></td>
+        </tr>
+        </tr>
+          <td><strong>SketchUp 6 (Google Release)</strong></td>
+          <td><a href="https://github.com/your-local-archiver/sketchup-archive/releases/download/google-release2/Sketchup.6.exe">Download</a></td>
+          <td><a href="https://www.virustotal.com/gui/file/8128431c818d6e73716e6a11d562ad4f246b5456c15860d2da3598858ad324d0" target="_blank">Scan</a></td>
+        </tr>
+        </tr>
+          <td><strong>SketchUp 5 (Google Release)</strong></td>
+          <td><a href="https://github.com/your-local-archiver/sketchup-archive/releases/download/google-release/Sketchup.5.exe">Download</a></td>
+          <td><a href="https://www.virustotal.com/gui/file/29add97998afaf05695cad0caeef358857ce9cb0ae864f814ef6195dc2c71596" target="_blank">Scan</a></td>
+        </tr>
+        </tr>
+          <td><strong>SketchUp 3 (@Last Software Release)</strong></td>
+          <td><a href="https://github.com/your-local-archiver/sketchup-archive/releases/download/%40last-su2/InstallSketchUp-3.1.0.96.exe">Download</a></td>
+          <td><a href="https://www.virustotal.com/gui/file/7d215e6f463ecf22c48f234aee1a87a41a8365ad6431f15ed4a499103e2236f6" target="_blank">Scan</a></td>
+        </tr>
+          <td>�</td>
+          <td>�</td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="views-table">
+      <caption>Mac Downloads</caption>
+      <thead>
+        <tr>
+          <th></th>
+          <th>All Downloads</th>
+          <th>VirusTotal Scans</th>
+        </tr>
+      </thead>
+      <tbody>
+        </tr>
+          <td><strong>SketchUp 2025</strong></td>
+          <td><a href="https://github.com/your-local-archiver/sketchup-archive/releases/download/su-24-25/SketchUp-2025-0-659-288.dmg">Download</a></td>
+          <td><a href="404" target="_blank">Scan</a></td>
+        </tr>
+        </tr>
+          <td><strong>SketchUp 2024</strong></td>
+          <td><a href="https://github.com/your-local-archiver/sketchup-archive/releases/download/su-24-25/SketchUp-2024-0-598-243.dmg">Download</a></td>
+          <td><a href="404" target="_blank">Scan</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </table>
+    <table class="views-table">
+      <caption>Android (apk) Downloads</caption>
+      <thead>
+        <tr>
+          <th></th>
+          <th>All Downloads</th>
+          <th>VirusTotal Scans</th>
+        </tr>
+      </thead>
+      <tbody>
+        </tr>
+          <td><strong>SketchUp Viewer App 5.4.2</strong></td>
+          <td><a href="https://github.com/your-local-archiver/sketchup-archive/releases/download/su-app-android/sketchup-viewer-5-4-2.apk">Download</a></td>
+          <td><a href="https://www.virustotal.com/gui/file/20c3891095b11be224f3e6dd2ca6aed0fa97a190bf1ae88261f2193126af3f63" target="_blank">Scan</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <!-- Social Bar -->
+  <div class="social-bar">
+    <ul>
+      <li><a href="https://drive.google.com/drive/folders/1W2wmCX-0-YbCdLm6eq511-k_Y6SuIt8D?usp=sharing" target="_blank">Google Drive</a></li>
+      <li><a href="https://github.com/your-local-archiver/sketchup-archive" target="_blank">GitHub Repo</a></li>
+      <li><a href="https://archive.org/details/sketchup-download-all" target="_blank">Internet Archive</a></li>
+    </ul>
+  </div>
+
+  <!-- Footer Section -->
+  <footer class="footer-main">
+    <div class="footer-container">
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>About Us</h4>
+          <ul>
+            <li><a href="#">The SketchUp Story</a></li>
+            <li><a href="#">Trimble Buildings</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Programs</h4>
+          <ul>
+            <li><a href="#">3D Content Developer</a></li>
+            <li><a href="#">K-12 Grants</a></li>
+            <li><a href="#">African Universities Grants</a></li>
+            <li><a href="#">Visiting Professionals</a></li>
+            <li><a href="#">Non-Profit Organizations</a></li>
+            <li><a href="#">Project Spectrum</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Developers</h4>
+          <ul>
+            <li><a href="#">Developer Center</a></li>
+            <li><a href="#">SketchUp Ruby API</a></li>
+            <li><a href="#">SketchUp SDK</a></li>
+            <li><a href="#">Extensions</a></li>
+            <li><a href="#">Developer Forum</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Help</h4>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Forum</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="trimble-logo">
+          <img src="https://web.archive.org/web/20160331022509im_/https://sketchup.com/sites/all/themes/sketch/images/dist/trimble-logo-white.png" alt="Trimble Logo"/>
+        </div>
+        <div class="copyright-links">
+          <a href="#">Archived by downside dev - Sketchup is owned by Trimble Inc.</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+        <div class="lang-select">
+          <select>
+            <option value="en" selected>English</option>
+            <option value="es">Espa�ol</option>
+            <option value="fr">Fran�ais</option>
+            <option value="de">Deutsch</option>
+            <option value="it">Italiano</option>
+            <option value="ja">Japanese</option>
+            <option value="ko">i dont know</option>
+            <option value="pt-br">what</option>
+            <option value="zh-hans">hi</option>
+            <option value="zh-hant">hhhhhhhhhhhhhhh</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Font Attribution -->
+  <div style="font-size: 10px; color: #888; text-align: center; padding: 10px;">
+    Fonts made from <a href="http://www.onlinewebfonts.com" style="color: #888; text-decoration: underline;">Web Fonts</a> are licensed under CC BY 4.0.
+  </div>
+  
+  <div style="font-size: 10px; color: #888; text-align: center; padding: 10px;">
+    Archived by downsidedev with <3
+  </div>
+
 </body>
 </html>
